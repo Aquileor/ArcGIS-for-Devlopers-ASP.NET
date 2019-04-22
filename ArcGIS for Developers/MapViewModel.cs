@@ -32,9 +32,18 @@ namespace ArcGIS_for_Developers
 
             FeatureLayer trailHeadsLayer = new FeatureLayer(new Uri("https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trailheads/FeatureServer/0"));
 
-            await trailHeadsLayer.LoadAsync();
+            FeatureLayer trailHeadsLines = new FeatureLayer(new Uri("https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trails/FeatureServer/0"));
 
+            FeatureLayer trailHeadsPoly = new FeatureLayer(new Uri("https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Parks_and_Open_Space/FeatureServer/0"));
+
+            await trailHeadsLayer.LoadAsync();
+            await trailHeadsLines.LoadAsync();
+            await trailHeadsPoly.LoadAsync();
+
+            newMap.OperationalLayers.Add(trailHeadsPoly);
+            newMap.OperationalLayers.Add(trailHeadsLines);
             newMap.OperationalLayers.Add(trailHeadsLayer);
+   
 
             newMap.InitialViewpoint = new Viewpoint(trailHeadsLayer.FullExtent);
 
