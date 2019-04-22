@@ -23,16 +23,22 @@ namespace ArcGIS_for_Developers
     {
         public MapViewModel()
         {
-
+            CreateNewMap();
         }
 
         private async void CreateNewMap()
         {
-            Map newMap = new Map(Basemap.CreateImageryWithLabels());
+            Map newMap = new Map(Basemap.CreateNationalGeographic());
 
-            FeatureLayer traiHeadsLayer = new FeatureLayer(new Uri("https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trailheads/FeatureServer/0"));
+            FeatureLayer trailHeadsLayer = new FeatureLayer(new Uri("https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trailheads/FeatureServer/0"));
 
-            await traiHeadsLayer.LoadAsync();
+            await trailHeadsLayer.LoadAsync();
+
+            newMap.OperationalLayers.Add(trailHeadsLayer);
+
+            newMap.InitialViewpoint = new Viewpoint(trailHeadsLayer.FullExtent);
+
+            Map = newMap;
         }
 
         private Map _map = new Map(Basemap.CreateStreets());
