@@ -26,6 +26,15 @@ namespace ArcGIS_for_Developers
 
         }
 
+        private async void CreateNewMap()
+        {
+            Map newMap = new Map(Basemap.CreateImageryWithLabels());
+
+            FeatureLayer traiHeadsLayer = new FeatureLayer(new Uri("https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trailheads/FeatureServer/0"));
+
+            await traiHeadsLayer.LoadAsync();
+        }
+
         private Map _map = new Map(Basemap.CreateStreets());
 
         /// <summary>
