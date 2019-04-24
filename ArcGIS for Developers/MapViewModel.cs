@@ -30,22 +30,22 @@ namespace ArcGIS_for_Developers
         {
             Map newMap = new Map(Basemap.CreateNationalGeographic());
 
-            FeatureLayer trailHeadsLayer = new FeatureLayer(new Uri("https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trailheads/FeatureServer/0"));
+            FeatureLayer NeaplAdmin1 = new FeatureLayer(new Uri("https://services.arcgis.com/iQ1dY19aHwbSDYIF/arcgis/rest/services/GAFSP_Nepal_2016/FeatureServer/1"));
 
-            FeatureLayer trailHeadsLines = new FeatureLayer(new Uri("https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trails/FeatureServer/0"));
+            FeatureLayer NeaplandFood = new FeatureLayer(new Uri("https://services.arcgis.com/iQ1dY19aHwbSDYIF/arcgis/rest/services/GAFSP_Nepal_2016/FeatureServer/2"));
 
-            FeatureLayer trailHeadsPoly = new FeatureLayer(new Uri("https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Parks_and_Open_Space/FeatureServer/0"));
+            FeatureLayer NeaplAirport = new FeatureLayer(new Uri("https://services.arcgis.com/pGfbNJoYypmNq86F/arcgis/rest/services/Nepal_Places_Facilities/FeatureServer/2"));
 
-            await trailHeadsLayer.LoadAsync();
-            await trailHeadsLines.LoadAsync();
-            await trailHeadsPoly.LoadAsync();
+            await NeaplAirport.LoadAsync();
+            await NeaplAdmin1.LoadAsync();
+            await NeaplandFood.LoadAsync();
 
-            newMap.OperationalLayers.Add(trailHeadsPoly);
-            newMap.OperationalLayers.Add(trailHeadsLines);
-            newMap.OperationalLayers.Add(trailHeadsLayer);
+            newMap.OperationalLayers.Add(NeaplandFood);
+            newMap.OperationalLayers.Add(NeaplAdmin1);
+            newMap.OperationalLayers.Add(NeaplAirport);
    
 
-            newMap.InitialViewpoint = new Viewpoint(trailHeadsLayer.FullExtent);
+            newMap.InitialViewpoint = new Viewpoint(NeaplAdmin1.FullExtent);
 
             Map = newMap;
         }
