@@ -14,7 +14,7 @@ using Esri.ArcGISRuntime.Symbology;
 using Esri.ArcGISRuntime.Tasks;
 using Esri.ArcGISRuntime.UI;
 
-namespace ArcGIS_for_Developers
+namespace ArcGISApp1
 {
     /// <summary>
     /// Provides map data to an application
@@ -23,31 +23,7 @@ namespace ArcGIS_for_Developers
     {
         public MapViewModel()
         {
-            CreateNewMap();
-        }
 
-        private async void CreateNewMap()
-        {
-            Map newMap = new Map(Basemap.CreateOpenStreetMap());
-
-            FeatureLayer NeaplAdmin1 = new FeatureLayer(new Uri("https://services.arcgis.com/iQ1dY19aHwbSDYIF/arcgis/rest/services/GAFSP_Nepal_2016/FeatureServer/1"));
-
-            FeatureLayer NeaplandFood = new FeatureLayer(new Uri("https://services.arcgis.com/iQ1dY19aHwbSDYIF/arcgis/rest/services/GAFSP_Nepal_2016/FeatureServer/2"));
-
-            FeatureLayer NeaplAirport = new FeatureLayer(new Uri("https://services.arcgis.com/pGfbNJoYypmNq86F/arcgis/rest/services/Nepal_Places_Facilities/FeatureServer/2"));
-
-            await NeaplAirport.LoadAsync();
-            await NeaplAdmin1.LoadAsync();
-            await NeaplandFood.LoadAsync();
-
-            newMap.OperationalLayers.Add(NeaplandFood);
-            newMap.OperationalLayers.Add(NeaplAdmin1);
-            newMap.OperationalLayers.Add(NeaplAirport);
-   
-
-            newMap.InitialViewpoint = new Viewpoint(NeaplAdmin1.FullExtent);
-
-            Map = newMap;
         }
 
         private Map _map = new Map(Basemap.CreateStreets());
